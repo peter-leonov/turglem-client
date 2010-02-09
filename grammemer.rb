@@ -52,11 +52,17 @@ class Grammemer
     end
   end
   
-  def forms word
+  def get_variants word
     raw = lemmatize word
     res = []
-    raw.scan(/(\S+)\s+(\S+)\s+(\S+)(?:\s+(\*))?\n/) do |form, pos, gramm, original|
-      res << {:form => form.downcase, :gramms => unpack_gramm(gramm.to_i(16))}
+    variant = nil
+    raw.scan(/^(\d+)\.$|^(\S+)\s+(\S+)\s+(\S+)(?:\s+(\*))?$/) do |nxt, form, pos, gramm, original|
+      if nxt
+        variant = []
+        res << variant
+        next
+      end
+      variant << {:form => form.downcase, :gramms => unpack_gramm(gramm.to_i(16))}
     end
     res
   end
@@ -74,11 +80,13 @@ class Grammemer
   end
   
   def print_forms word
-    vars = forms word
     i = 0
-    vars.each do |var|
+    get_variants(word).each do |variant|
       i += 1
-      puts "#{var[:form].upcase}#{" " * (15 - var[:form].length)} #{var[:gramms].join(", ")}"
+      puts "#{i}.\n"
+      variant.each do |form|
+        puts "#{form[:form].upcase}#{" " * (15 - form[:form].length)} #{form[:gramms].join(", ")}"
+      end
     end
   end
   
