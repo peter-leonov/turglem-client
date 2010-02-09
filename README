@@ -13,7 +13,7 @@ turglem-client аффтар
 
 First column of the output reflects a form produced (often guessed) by turglem. The second column is for the part of speech. The third tells us 64-bit field with bitwise grammem options (differs in languages). The fourth column is present only in the line with the exact form of the source word. It helps to find grammems for the source word form. For example:
 turglem-client красная
-АСНЫЙ 1 600206
+КАСНЫЙ 1 600206
 КРАСНОГО 1 60020a
 КРАСНОМУ 1 600212
 КРАСНОГО 1 200222
