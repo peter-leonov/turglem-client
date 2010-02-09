@@ -1,0 +1,9 @@
+.DS_Store
+*.log
+*.tmp
+*.pid
+CMakeFiles/
+CMakeCache.txt
+cmake_install.cmake
+Makefile
+turglem
