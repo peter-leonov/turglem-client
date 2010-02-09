@@ -51,14 +51,14 @@ void do_magic (turglem lem, const char *s)
 		
 		/* report(s, lem, lem_res, i, 0); */
 		
+		printf("%lu.\n", i + 1);
+		
 		for (j = 0; j < form_cnt; j++)
 		{
 			sz = turglem_build_form(lem, l, ssz_src, out_letters, 32, lem_res[i * 2], lem_res[i * 2 + 1], j);
 			sz = my_l2s(out_letters, sz, buf, 64);
 			report(buf, lem, lem_res, i, j);
-		};
-		
-		printf("\n");
+		}
 	}
 }
 
