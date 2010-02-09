@@ -3,13 +3,45 @@
 
 class Grammemer
   module Config
-    LEMMATIZER = './turglem-client'
+    LEMMATIZER = "./turglem-client"
   end
   
   module Grammems
-    MR   = 0x200
-    JR   = 0x400
-    SR   = 0x800
+    BINARY =
+    {
+      :MC   => 0x001,
+      :EC   => 0x002,
+      
+      :IP   => 0x004,
+      :RP   => 0x008,
+      :DP   => 0x010,
+      :VP   => 0x020,
+      :TP   => 0x040,
+      :PP   => 0x080,
+      :ZP   => 0x100,
+      
+      :MR   => 0x200,
+      :JR   => 0x400,
+      :SR   => 0x800
+    }
+    
+    NAMES =
+    {
+      :MC   => "мн. ч.",
+      :EC   => "ед. ч.",
+      
+      :IP   => 'им. п.',
+      :RP   => 'род. п.',
+      :DP   => 'дат. п.',
+      :VP   => 'вин. п.',
+      :TP   => 'тв. п.',
+      :PP   => 'пр. п.',
+      :ZP   => 'зв. п.',
+      
+      :MR   => "муж. р.",
+      :JR   => "жен. р.",
+      :SR   => "ср. р."
+    }
   end
   
   def lemmatize word
@@ -31,17 +63,20 @@ class Grammemer
   
   def unpack_gramm gramm
     arr = []
-    arr << gramm.to_s(16)
-    arr << "м.р." if gramm & Grammems::MR != 0
-    arr << "ж.р." if gramm & Grammems::JR != 0
-    arr << "с.р." if gramm & Grammems::SR != 0
+    
+    arr << gramm.to_s(2)
+    
+    Grammems::BINARY.each do |sym, code|
+      arr << Grammems::NAMES[sym] if gramm & code != 0
+    end
+    
     arr
   end
   
   def demo word
     vars = forms word
     vars.each do |var|
-      puts "#{var[:form]} #{var[:gramms].join(", ")}"
+      puts "#{var[:gramms].join(", ")} #{var[:form]}"
     end
   end
   
