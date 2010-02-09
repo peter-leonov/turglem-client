@@ -1,0 +1,36 @@
+This piece of code is just a client utility to the large project of http://lemmatizer.org/ and totally depends on it.
+
+The only thing turglem-client does is printing a plain list of forms of specified Russian work (it can be easily tweaked to get support for Eanglish). As simple as follows:
+turglem-client аффтар
+АФФТАР 0 8000000206 *
+АФФТАРА 0 800000020a
+АФФТАРУ 0 8000000212
+АФФТАРА 0 8000000222
+АФФТАРОМ 0 8000000242
+АФФТАРЕ 0 8000000282
+АФФТАРЫ 0 8000000205
+…
+
+First column of the output reflects a form produced (often guessed) by turglem. The second column is for the part of speech. The third tells us 64-bit field with bitwise grammem options (differs in languages). The fourth column is present only in the line with the exact form of the source word. It helps to find grammems for the source word form. For example:
+turglem-client красная
+АСНЫЙ 1 600206
+КРАСНОГО 1 60020a
+КРАСНОМУ 1 600212
+КРАСНОГО 1 200222
+КРАСНЫЙ 1 400222
+КРАСНЫМ 1 600242
+КРАСНОМ 1 600282
+КРАСНАЯ 1 600406 *
+КРАСНОЙ 1 60040a
+КРАСНОЙ 1 600412
+КРАСНУЮ 1 600422
+…
+
+
+Before compiling the client you could have the turglem installed. See the wiki page Installation.
+
+When all prerequsites are installed the compilation process is simple:
+cd turglem-client
+cmake .
+make
+./turglem-client работает
