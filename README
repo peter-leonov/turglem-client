@@ -27,7 +27,7 @@ turglem-client красная
 …
 
 
-Before compiling the client you could have the turglem installed. See the wiki page Installation.
+Before compiling the client you could have the turglem installed. Please, see the INSTALL for details.
 
 When all prerequsites are installed the compilation process is simple:
 cd turglem-client

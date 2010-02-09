@@ -1,0 +1,31 @@
+This is a copy of [1]
+
+Quick guide to install and understand lemmatizer internals.
+
+First of all, you must understand that lemmatizer — is the set of statically linked libraries, which you must link with your code. You also must include binary dictionaries to your application. This quick guide describes how to install and start to use russian lemmatizer. To compile and install lemmatizer you need to install cmake [2] first. All subsequent notes are related to Unix-style operating systems. If you are using other type of OS, you should write the following manual yourself (and send it to me, if you want to see it here).
+
+libMAFSA [3] is the core of the lemmatizer. All other libraries depend on it. Download the last version from the following page [4], unpack it and compile:
+# tar xzf libMAFSA-0.2.tar.gz
+# cd libMAFSA-0.2/
+# cmake .
+# make
+# sudo make install
+After this you should install libturglem. You can download it at the same place.
+# tar xzf libturglem-0.2.tar.gz
+# cd libturglem-0.2
+# cmake .
+# make
+# sudo make install
+Next you should install russian dictionaries with some additional features to work with.
+# tar xzf turglem-russian-0.2.tar.gz
+# cd turglem-russian-0.2
+# cmake .
+# make
+# sudo make install
+Beware, kids! While running make, dictionaries will be compiled.
+
+
+[1] http://lemmatizer.org/en/setup.html
+[2] http://cmake.org/
+[3] http://lemmatizer.org/en/libMAFSA.html
+[4] http://lemmatizer.org/en/download.html or http://github.com/kung-fu-tzu/turglem-client/downloads
