@@ -1,6 +1,6 @@
 This piece of code is just a client utility to the large project of http://lemmatizer.org/ and totally depends on it.
 
-The only thing turglem-client does is printing a plain list of forms of specified Russian work (it can be easily tweaked to get support for Eanglish). As simple as follows:
+The only thing turglem-client does is printing a plain list of forms of specified Russian work (it can be easily tweaked to get support for English). As simple as follows:
 turglem-client аффтар
 АФФТАР 0 8000000206 *
 АФФТАРА 0 800000020a
